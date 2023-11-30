@@ -58,7 +58,7 @@ const Header = (props) => {
 
   let headerIconStyles = "ml-2  inline-block lg:hover:text-[#1D6F2B] lg:hover:bg-[#E5E5E5] lg:hover:rounded-full py-1.5 px-2.5";
   return (
-    <div className="relative w-full h-100px bg-white sticky top-0 z-40 border-b-[1px] border-b-gray-200">
+    <div className="w-full h-100px bg-white sticky top-0 z-40 border-b-[1px] border-b-gray-200">
       <nav className="h-full px-4 max-w-container mx-auto relative flex md:items-center md:justify-between">
         <div>
             {showMenu && (
