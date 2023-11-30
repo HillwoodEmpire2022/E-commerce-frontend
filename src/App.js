@@ -15,7 +15,7 @@ import IndexLayout from "./Layouts/IndexLayout";
 import UserHome from "./pages/Account/Home/UserHome";
 import Authentication from "./pages/Authentication";
 import Loader from "./components/loader/Loader";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { logIn } from "./redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,18 +25,18 @@ const App = () => {
   
   const storeUserInfo = useSelector((state) => state.userReducer.userInfo.profile)
   useEffect(() => { 
-    // const checkForGoogleUserInfo = () => {
-      axios.get(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/google/success`, { withCredentials: true }).then((data) => {
-        sessionStorage.setItem("token", data.token)
+    const checkForGoogleUserInfo = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/google/success`, { withCredentials: true })
+        sessionStorage.setItem("token", response.token)
         console.log("yes");
-        Dispatch(logIn({profile: data.user, logInType: "ByGoogle"}))
-      }).catch((error) => { 
+        Dispatch(logIn({profile: response.user, logInType: "ByGoogle"}))
+      } catch (error) {
         console.log({ error: error });
-      })
-
-    // }
-    // checkForGoogleUserInfo()
-  },[])
+      }
+    }
+    checkForGoogleUserInfo()
+  },[Dispatch])
   
   return ( 
     <>
