@@ -115,19 +115,6 @@ const Header = (props) => {
                     Contact
                 </NavLink>
               </li>
-              <li >
-                <NavLink
-                  className={({ isActive }) => {
-                    return isActive ? "w-full text-[#1D6F2B] lg:hover:text-[#1D6F2B] lg:hover:bg-[#E5E5E5] lg:hover:rounded-md  font-semibold hidden md:inline-block lg:py-1 lg:px-2"
-                      : "w-full lg:hover:text-[#1D6F2B] lg:hover:bg-[#E5E5E5] lg:hover:rounded-md   font-semibold hidden md:inline-block lg:py-1 lg:px-2"
-                  }}  
-                  to="journal"
-                  state={{ data: location.pathname.split("/")[1] }}
-                  end
-                >
-                  Journal
-                </NavLink>
-              </li>
             </ul>
               
               )}
@@ -422,22 +409,6 @@ const Header = (props) => {
                               {"Journal"}
                             </Link>
                           </li>
-                          
-                          
-                        {/* {leftNavBarList.map((item) => (
-                          <li
-                            className="font-normal hover:font-bold items-center text-lg text-gray-200 hover:underline underline-offset-[4px] decoration-[1px] hover:text-white md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
-                            key={item._id}
-                          >
-                            <Link
-                              to={item.link}
-                              state={{ data: location.pathname.split("/")[1] }}
-                              onClick={() => setSidenav(false)}
-                            >
-                              {item.title}
-                            </Link>
-                          </li>
-                        ))} */}
                       </ul>
                       <div className="mt-4 bg-[#1D6F2B]">
                         <h1
