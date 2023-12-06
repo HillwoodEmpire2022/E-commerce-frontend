@@ -15,34 +15,36 @@ import IndexLayout from "./Layouts/IndexLayout";
 import UserHome from "./pages/Account/Home/UserHome";
 import Authentication from "./pages/Authentication";
 import Loader from "./components/loader/Loader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { logIn } from "./redux/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const App = () => {
   const Dispatch = useDispatch()
-  
-  const storeUserInfo = useSelector((state) => state.userReducer.userInfo.profile)
-  useEffect(() => { 
-    const checkForGoogleUserInfo = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/google/success`, { withCredentials: true })
-        sessionStorage.setItem("token", response.token)
-        console.log("yes");
-        Dispatch(logIn({profile: response.user, logInType: "ByGoogle"}))
-      } catch (error) {
-        console.log({ error: error });
-      }
+  const [user, setUser] = useState();
+
+  const checkForGoogleUserInfo = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/google/success`, { withCredentials: true })
+
+      sessionStorage.setItem("token", response.data.token)
+      Dispatch(logIn({ profile: response.data.user, logInType: "ByGoogle" }))
+      setUser(response.data.user)
+    } catch (error) {
+      console.log({ error: error });
     }
+  }
+
+  useEffect(() => { 
     checkForGoogleUserInfo()
-  },[Dispatch])
+  },[])
   
   return ( 
     <>
       <Loader />
       <Routes>
-        {storeUserInfo && Object.keys(storeUserInfo).length > 0 ? (
+        {user && Object.keys(user).length > 0 ? (
             <Route path="/accounts/" element={<UserLayout />}>
               <Route path="" element={<UserHome />}></Route>
               <Route path="shop" element={<Shop />}></Route>
