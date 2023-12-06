@@ -28,15 +28,15 @@ const App = () => {
     const checkForGoogleUserInfo = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/google/success`, { withCredentials: true })
-        sessionStorage.setItem("token", response.token)
-        console.log("yes");
-        Dispatch(logIn({profile: response.user, logInType: "ByGoogle"}))
+  
+        sessionStorage.setItem("token", response.data.token)
+        Dispatch(logIn({profile: response.data.user, logInType: "ByGoogle"}))
       } catch (error) {
         console.log({ error: error });
       }
     }
     checkForGoogleUserInfo()
-  },[Dispatch])
+  },[])
   
   return ( 
     <>
