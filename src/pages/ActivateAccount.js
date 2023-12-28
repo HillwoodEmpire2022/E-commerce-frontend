@@ -9,16 +9,17 @@ import axios from 'axios';
 
 
 
+
 const ActivateAccount=()=>{
 
     const [activate, setActivate]=useState('');
     const queryParams = new URLSearchParams(useLocation().search);
-    const token = queryParams.get('token');
-
-    const params = useParams()
-    console.log("use params",params)
-
+    const toke = queryParams.get('token');
     const navigate = useNavigate();
+
+    const {token} = useParams();
+
+ 
 
     useEffect(() => {
         const activateAccount = async () => {
@@ -38,14 +39,14 @@ const ActivateAccount=()=>{
           } catch (error) {
             if (error.response && error.response.status === 400) {
               setActivate(error.response.data.message);
-              setTimeout(() => {
-                navigate('/signin');
-              }, 3000);
+              // setTimeout(() => {
+              //   navigate('/signin');
+              // }, 3000);
             } else {
               setActivate('Error during activation. Please try again.'); 
-              setTimeout(() => {
-                navigate('/signin');
-              }, 3000);
+              // setTimeout(() => {
+              //   navigate('/signin');
+              // }, 3000);
             }
           }
         };

@@ -94,7 +94,9 @@ const App = () => {
           </>
 
         )}   
-             <Route path="/user/verify-account/" element={<ActivateAccount />}></Route> 
+             {/* <Route path="/user/verify-account/" element={<ActivateAccount />}></Route>  */}
+             <Route path="/user/verify-account/:token" element={<ActivateAccount />}></Route> 
+             
         <Route path="signup" element={<Authentication openForm={{signin: false, signup: true}}/>}></Route>
         <Route path="signin" element={<Authentication openForm={{signin: true, signup: false}}/>}></Route>
       </Routes>
