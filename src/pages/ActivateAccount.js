@@ -3,14 +3,20 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FiCheckCircle } from 'react-icons/fi';
 import axios from 'axios';
+
+
 
 const ActivateAccount=()=>{
 
     const [activate, setActivate]=useState('');
     const queryParams = new URLSearchParams(useLocation().search);
     const token = queryParams.get('token');
+
+    const params = useParams()
+    console.log("use params",params)
 
     const navigate = useNavigate();
 
