@@ -34,5 +34,10 @@ nav .active li {
 /* ============= NavLink active End here ================ */
 
 .item-selected {
-  border-color: #5D636F;
+  border-color: #5d636f;
+}
+
+/* disable ant model footeer */
+.ant-modal-footer {
+  display: none;
 }

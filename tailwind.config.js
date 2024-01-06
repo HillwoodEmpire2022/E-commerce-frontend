@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}"
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
@@ -24,6 +24,8 @@ module.exports = {
         titleFont: ["Poppins", "sans-serif"],
       },
       colors: {
+        primary: "#1D6F2B",
+        secondary: "#EEEEEE",
         primeColor: "#262626",
         lightText: "#6D6D6D",
       },
@@ -32,8 +34,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("tailwind-scrollbar"),
-    require('flowbite/plugin')
-  ],
+  plugins: [require("tailwind-scrollbar"), require("flowbite/plugin")],
 };

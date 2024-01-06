@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import MenuIconWhite from "../../assets/images/menu-white.png"
+import MenuIconWhite from "../../assets/images/menu-white.png";
 import {
   bannerImgOne,
   bannerImgTwo,
@@ -15,16 +15,19 @@ const Banner = (props) => {
   const [dotActive, setDocActive] = useState(0);
   const ads = [
     {
-      title: 'Ad 1',
-      image: 'https://ae04.alicdn.com/kf/S0fb7b4c77ed149ad9beccbbfba436bf0B.jpg_480x480.jpg_.webp',
+      title: "Ad 1",
+      image:
+        "https://ae04.alicdn.com/kf/S0fb7b4c77ed149ad9beccbbfba436bf0B.jpg_480x480.jpg_.webp",
     },
     {
-      title: 'Ad 2',
-      image: 'https://ae04.alicdn.com/kf/S8ef35537fd044a738375ff9c8cef6a63N.jpg_480x480.jpg_.webp',
+      title: "Ad 2",
+      image:
+        "https://ae04.alicdn.com/kf/S8ef35537fd044a738375ff9c8cef6a63N.jpg_480x480.jpg_.webp",
     },
     {
-      title: 'Ad 3',
-      image: 'https://ae04.alicdn.com/kf/Se810acbc45bb4153a2d05e7f60b52c22C.jpg_480x480.jpg_.webp',
+      title: "Ad 3",
+      image:
+        "https://ae04.alicdn.com/kf/Se810acbc45bb4153a2d05e7f60b52c22C.jpg_480x480.jpg_.webp",
     },
   ];
 
@@ -45,7 +48,6 @@ const Banner = (props) => {
           top: "50%",
           left: "7%",
           transform: "translateY(-50%)",
-          
         }}
       >
         <ul style={{ margin: "0px" }}> {dots} </ul>
@@ -119,7 +121,6 @@ const Banner = (props) => {
     ],
   };
   return (
-    
     <div className=" bg-white w-full flex justify-center">
       <div className="w-full lg:container">
         <div className="relative w-full flex gap-4 py-2">
@@ -134,18 +135,24 @@ const Banner = (props) => {
           </div>
           <div className="w-full lg:w-[60%]">
             <Slider {...settings} className="px-4 w-full">
-                <div className="w-1408 h-[15rem] mx-auto rounded-md">
-                  <Image imgSrc={bannerImgOne}
-                  className="w-full h-full object-cover rounded-md" />
-                </div>
-                <div className="w-1432 h-[15rem] mx-auto rounded-md">
-                  <Image imgSrc={bannerImgTwo}
-                  className="w-full h-full object-cover rounded-md" />
-                </div>
-                <div className="w-1408 h-[15rem] mx-auto rounded-md">
-                  <Image imgSrc={bannerImgThree}
-                  className="w-full h-full object-cover rounded-md" />
-                </div>
+              <div className="w-1408 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgOne}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
+              <div className="w-1432 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgTwo}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
+              <div className="w-1408 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgThree}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
             </Slider>
           </div>
           <div className="hidden lg:w-[20%] lg:block">
@@ -153,8 +160,6 @@ const Banner = (props) => {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 };

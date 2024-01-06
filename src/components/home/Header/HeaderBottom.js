@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import MenuIcon from "../../../assets/images/menu.png"
-import MenuIconWhite from "../../../assets/images/menu-white.png"
+import MenuIcon from "../../../assets/images/menu.png";
+import MenuIconWhite from "../../../assets/images/menu-white.png";
 import { FaSearch } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const HeaderBottom = () => {
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (ref.current !== null && ref.current.contains(e.target) === false) {
-          return setShowCategories(false)
+        return setShowCategories(false);
       }
     });
   }, []);
@@ -29,9 +29,9 @@ const HeaderBottom = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleCategoriesMenuClick = () => { 
-      return setShowCategories(!showCategories);
-  }
+  const handleCategoriesMenuClick = () => {
+    return setShowCategories(!showCategories);
+  };
 
   useEffect(() => {
     const filtered = paginationItems.filter((item) =>
@@ -47,13 +47,22 @@ const HeaderBottom = () => {
           <div
             onClick={() => handleCategoriesMenuClick()}
             ref={ref}
-            className={"relative  border-box cursor-pointer items-center gap-2 text-[#1D6F2B] "}
+            className={
+              "relative  border-box cursor-pointer items-center gap-2 text-[#1D6F2B] "
+            }
           >
-            <div className={`lg:hidden flex py-4 px-6 items-center gap-2 rounded-md ${ showCategories ? `bg-[#1D6F2B] text-white` : ""}`}>
-              <img src={showCategories ? MenuIconWhite : MenuIcon } className="w-5 h-5" />
+            <div
+              className={`lg:hidden flex py-4 px-6 items-center gap-2 rounded-md ${
+                showCategories ? `bg-[#1D6F2B] text-white` : ""
+              }`}
+            >
+              <img
+                src={showCategories ? MenuIconWhite : MenuIcon}
+                className="w-5 h-5"
+              />
               <p className="text-[14px] font-semibold">Categories</p>
             </div>
-            
+
             {showCategories && (
               <motion.ul
                 initial={{ y: 30, opacity: 0 }}
@@ -134,8 +143,7 @@ const HeaderBottom = () => {
               </div>
             )}
           </div>
-          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
-          </div>
+          <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative"></div>
         </Flex>
       </div>
     </div>
