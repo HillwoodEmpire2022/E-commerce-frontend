@@ -134,7 +134,7 @@ const Banner = () => {
             <HomePageCategories />
           </div>
 
-          <div className="w-full lg:w-[60%]  ">
+          <div className="hidden lg:flex          w-[60%]  ">
             <Slider {...settings} className="px-4 w-full">
               <div className="w-1408 h-[15rem] mx-auto rounded-md">
                 <Image
@@ -154,9 +154,60 @@ const Banner = () => {
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
+
+              <div className="w-1408 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgThree}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
             </Slider>
           </div>
-          <div className="hidden lg:w-[20%] lg:block">
+
+          <div className="w-full lg:hidden  ">
+            <Slider {...settings} className="px-4 w-full">
+              <div className="w-1408 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgOne}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
+              <div className="w-1432 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgTwo}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
+              <div className="w-1408 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgThree}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
+
+              <div className="w-1408 h-[15rem] mx-auto rounded-md">
+                <Image
+                  imgSrc={bannerImgThree}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
+
+              {ads.map((ad, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="w-1408 h-[15rem] mx-auto rounded-md border-gray-200"
+                  >
+                    <Image
+                      imgSrc={ad.image}
+                      className="h-full w-full object-cover rounded-md m-auto"
+                    />
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+          <div className="hidden lg:w-[20%] lg:block border-4 rounded-md">
             <ImageSlider ads={ads} />
           </div>
         </div>
