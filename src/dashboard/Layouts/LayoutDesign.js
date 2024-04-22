@@ -128,7 +128,7 @@ export const LayoutDesign = ({ userprofile }) => {
   const items = [
     {
       key: "1",
-      label: <Space className="pr-6 py-[.5rem]">view Profile</Space>,
+      label: <Space className="pr-6 py-[.5rem]  ">view Profile</Space>,
       icon: <UserOutlined className="pl-4" />,
       onClick: () => handleItemClick("1"),
     },
@@ -183,7 +183,7 @@ export const LayoutDesign = ({ userprofile }) => {
   }, []);
   return (
     <TitleContext.Provider value={titles[selectedKey]}>
-      <Layout style={{ minHeight: "100vh", backgroundColor: "red" }}>
+      <Layout style={{ minHeight: "100vh", backgroundColor: "white" }}>
         {showSidebar && (
           <Sider
             collapsible
@@ -193,15 +193,17 @@ export const LayoutDesign = ({ userprofile }) => {
               window.innerWidth > 500
                 ? {
                     backgroundColor: "white",
+                    marginTop: 64,
                   }
                 : {
                     backgroundColor: "white",
                     // overflow: "auto",
-                    zIndex: showSidebar ? 10 : -1,
+                    zIndex: showSidebar ? 50 : -1,
                     position: "fixed",
-                    top: 70,
+                    top: 65,
                     left: 0,
                     bottom: 0,
+
                     transition: "width 0.3s ease",
                   }
             }
@@ -267,7 +269,7 @@ export const LayoutDesign = ({ userprofile }) => {
           </Sider>
         )}
         <Layout className="overflow-auto scrollbar-hidden bg-light">
-          <Header className="sticky z-50 top-0 bg-primary flex justify-between pl-0  pr-5">
+          <Header className="fixed z-50 w-[100%] top-0 left- right-0 bg-primary flex justify-between pl-0  pr-5">
             <div className="flex items-center ">
               <Button
                 type="text"
@@ -338,7 +340,7 @@ export const LayoutDesign = ({ userprofile }) => {
               // alignItems: "center",
               display: "flex",
             }}
-            className="h-full md:py-2 px-5"
+            className="h-full md:py-2 px-5 mt-20"
           >
             <Outlet />
           </Content>
