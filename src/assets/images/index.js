@@ -31,6 +31,8 @@ import productOfTheYear from "./products/productOfTheYear.png";
 import paymentCard from "./payment.png";
 import emptyCart from "../images/emptyCart.png";
 
+import whatsappIcon from "./whatsappicon.png";
+
 export {
   FeliTechLogo_transparent,
   FeliTechWhiteLogo,
@@ -64,4 +66,7 @@ export {
   // ===================== Products End here ==============
   paymentCard,
   emptyCart,
+
+  // Whatsapp Icon
+  whatsappIcon,
 };
