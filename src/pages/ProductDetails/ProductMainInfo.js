@@ -137,7 +137,7 @@ const ProductMainInfo = ({
                         handleInsufficientQuantityHover(e);
                     }}
                     key={measurement.measurement}
-                    className={`border-[2px] rounded-lg py-1 px-2 cursor-pointer text-sm disabled:opacity-30 disabled:cursor-not-allowed ${
+                    className={`border-[2px] rounded  capitalize py-1 px-2 cursor-pointer text-sm disabled:opacity-30 disabled:cursor-not-allowed ${
                       selectedMeasurement ===
                       measurement.measurement
                         ? 'border-dashed border-7 border-orange-400 shadow-orange-400 drop-shadow-xl'

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 import { ReactComponent as Spinner } from '../../assets/images/Spinner.svg';
 import {
   EyeFilled,
@@ -11,8 +15,9 @@ import Cookies from 'js-cookie';
 import AlertComponent from '../designLayouts/AlertComponent';
 import { useUser } from '../../context/UserContex';
 
-const SignInForm = (props) => {
+const SignInForm = () => {
   const { onLogin } = useUser();
+  const { state } = useLocation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -88,6 +93,10 @@ const SignInForm = (props) => {
           token: result.data.token,
         });
 
+        // IF USER WAS ACCESSING STATE, NAVIAGETE HIM THERE
+        if (state?.returnTo) {
+          return navigate(`/${state.returnTo}`);
+        }
         if (result.data.data.user.role === 'customer') {
           navigate('/', { replace: true });
         } else {
@@ -95,6 +104,7 @@ const SignInForm = (props) => {
         }
       }
     } catch (err) {
+      console.error(err);
       if (err?.response?.data?.status === 'fail') {
         setSignInError(err.response.data.message);
       } else {

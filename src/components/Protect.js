@@ -1,13 +1,23 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useUser } from '../context/UserContex';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function Protect({ children }) {
+export default function Protect({ children, returnTo }) {
   const { user } = useUser();
+  const [userChecked, setUserChecked] = useState(false);
+  const navigate = useNavigate();
 
-  if (!user) {
-    return <Navigate replace to='/signin' />;
-  }
+  useEffect(() => {
+    if (!user) {
+      if (returnTo) {
+        navigate('/signin', { state: { returnTo } });
+      } else {
+        navigate('/signin');
+      }
+    } else {
+      setUserChecked(true);
+    }
+  }, [navigate, user, returnTo]);
 
-  return <>{children}</>;
+  return userChecked ? children : null;
 }
