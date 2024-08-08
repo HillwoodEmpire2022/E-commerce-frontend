@@ -11,14 +11,26 @@ import { useLocation } from "react-router-dom";
 import HomePageCategories from "../homePageCategories/HomePageCategories";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../ProductsCategories";
+import axios from "axios";
+export async function searchproduct(name) {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/v1/products?name=${name}&fields=name,price,seller,discountPercentage,colorMeasurementVariations,hasColors,hasMeasurements,productImages.productThumbnail.url`
+    );
+
+    return response.data.data.products;
+  } catch (error) {
+    return [];
+  }
+}
 
 const SearchBar = ({ ismobileview }) => {
-  const { data: products } = useQuery({
-    queryKey: ["products-search"],
-    queryFn: ({ pageParam = 1 }) => {
-      return fetchProducts(pageParam);
-    },
-  });
+  // const { data: products } = useQuery({
+  //   queryKey: ["products-search"],
+  //   queryFn: ({ pageParam = 1 }) => {
+  //     return fetchProducts(pageParam);
+  //   },
+  // });
 
   const [showCategories, setShowCategories] = useState(false);
   const navigate = useNavigate();
@@ -48,20 +60,22 @@ const SearchBar = ({ ismobileview }) => {
     return setShowCategories(!showCategories);
   };
 
-  let prod =
-    (products &&
-      products.length > 0 &&
-      products.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase())
-      )) ||
-    [];
+  // useEffect(() => {
+  //   const filtered = products?.filter((item) =>
+  //     item?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  //   setFilteredProducts(filtered);
+  // }, [products, searchQuery]);
 
   useEffect(() => {
-    const filtered = products?.filter((item) =>
-      item?.name?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-  }, [products, searchQuery]);
+    if (searchQuery.length > 0) {
+      searchproduct(searchQuery).then((data) => {
+        setFilteredProducts(data);
+      });
+    } else {
+      setFilteredProducts([]);
+    }
+  }, [searchQuery]);
 
   return (
     <div className={` ${ismobileview ? " " : "hidden md:block w-[40%]"}`}>
