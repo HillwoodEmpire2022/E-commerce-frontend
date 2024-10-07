@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProductImages from "./ProductImages";
 import ProductMainInfo from "./ProductMainInfo";
 import CheckoutDetails from "./CheckoutDetails";
@@ -12,13 +12,28 @@ export default function ProductDetails({ product, dispatch }) {
   const [sectionHasProducts, setSectionHasProducts] = useState({});
 
   const topDivRef = useRef(null);
-  const scrollToTop = () => {
-    if (topDivRef.current) {
-      setTimeout(() => {
-        topDivRef.current.scrollIntoView({ behavior: "smooth" });
-      }, 1000);
+
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300) {
+      setVisible(true);
+    } else if (scrolled <= 300) {
+      setVisible(false);
     }
   };
+
+  const scrollToTop = () => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 2000);
+  };
+
+  window.addEventListener("scroll", toggleVisible);
   const handleAddwishlist = async (id) => {
     // event.stopPropagation();
 
@@ -71,30 +86,27 @@ export default function ProductDetails({ product, dispatch }) {
     <div className="mx-auto w-full border-b-[1px] border-b-gray-300">
       <div className="mx-auto mt-10 max-w-container p-4">
         <div className="-mt-5 h-full w-full pb-10 xl:-mt-8">
-          <div className="flex flex-col gap-14">
-            <div
-              ref={topDivRef}
-              className="flex flex-col items-center gap-12 mdl:flex-row mdl:flex-wrap"
-            >
-              <>
-                <ProductImages
-                  productImages={product.productDetails.productImages}
-                  activeImage={product.activeImage}
-                  dispatch={dispatch}
-                  productId={product.productDetails.id}
-                  handleAddwishlist={handleAddwishlist}
-                />
-                <ProductMainInfo
-                  product={product.productDetails}
-                  dispatch={dispatch}
-                  selectedMeasurement={product.selectedMeasurement}
-                  selectedColor={product.selectedColor}
-                  activeImage={product.activeImage}
-                />
-                <CheckoutDetails product={product} />
+          <div className="flex flex-col gap-1">
+            <div ref={topDivRef} className="h-1"></div>
+            <div className="flex flex-col items-start gap-12 sml:flex-row sml:flex-wrap">
+              <ProductImages
+                productImages={product.productDetails.productImages}
+                activeImage={product.activeImage}
+                dispatch={dispatch}
+                productId={product.productDetails.id}
+                handleAddwishlist={handleAddwishlist}
+              />
+              <ProductMainInfo
+                product={product.productDetails}
+                dispatch={dispatch}
+                selectedMeasurement={product.selectedMeasurement}
+                selectedColor={product.selectedColor}
+                activeImage={product.activeImage}
+              />
 
-                <ProductSecondaryInfo product={product.productDetails} />
-              </>
+              {/* <CheckoutDetails product={product} /> */}
+
+              {/* <ProductSecondaryInfo product={product.productDetails} /> */}
             </div>
           </div>
 
