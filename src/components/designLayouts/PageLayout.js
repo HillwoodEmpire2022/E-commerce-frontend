@@ -22,7 +22,7 @@ export default function PageLayout({ children, showFooter, userInfo }) {
         target="_blank"
         className="fixed text-white z-50 right-4 bottom-10 w-12 h-12 hover:animate-bounce"
       >
-        <img src={whatsappIcon} className="w-full h-full" alt="WhatsApp" />
+        <img src={whatsappIcon} className="w-full h-full border" alt="WhatsApp" />
       </a>
     </>
   );

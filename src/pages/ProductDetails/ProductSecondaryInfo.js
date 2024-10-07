@@ -26,7 +26,7 @@ const ProductSecondaryInfo = ({ product }) => {
     {
       width: 400,
       height: 400,
-    }
+    },
   );
 
   // <img
@@ -35,46 +35,55 @@ const ProductSecondaryInfo = ({ product }) => {
   // ></img>;
 
   return (
-    <div className="w-container w-full  flex flex-col">
-      <div className="border-b-2 h-8">
+    <div className="w-container flex w-full flex-col">
+      <div className="h-8 border-b-2">
         <ul className="font-semibold">
-          <li className="inline-block cursor-pointer bg-[#E5E5E5] py-[4px] px-[18px]">
+          <li className="inline-block cursor-pointer bg-[#E5E5E5] px-[18px] py-[4px]">
             Description
           </li>
         </ul>
       </div>
 
-      <div className="border-2 border-t-0 rounded-bl-md rounded-br-md py-3 px-4 capitalize-first flex-col sml:flex gap-5">
-        {product?.attributes?.length > 0 && (
-          <table className=" border table-auto  ">
-            {product?.attributes.map((attribute, index) => {
-              return (
-                <tr className="border">
-                  <td className="border border-black">{attribute.key}</td>
-                  <td className="border border-black">{attribute.value}</td>
-                </tr>
-              );
-            })}
-          </table>
-        )}
-
+      <div className="capitalize-first flex-col gap-8 rounded-bl-md rounded-br-md border-2 border-t-0 px-4 py-3 sml:flex">
         {product?.description.length > 0 && (
           <p
-            className=" text-gray-600 w-full p-0 break-words overflow-auto"
+            className="w-full overflow-auto break-words p-0 text-gray-600"
             dangerouslySetInnerHTML={{
               __html: product.description,
             }}
           ></p>
+        )}{" "}
+        {product?.attributes?.length > 0 && (
+          <>
+            {product?.attributes.length === 0 ? (
+              <></>
+            ) : (
+              <>
+                <table className="table-auto border border-gray-100">
+                  {product?.attributes.map((attribute, index) => {
+                    return (
+                      <tr className="border">
+                        <td className="border border-gray-300">
+                          {attribute.key}
+                        </td>
+                        <td className="border border-gray-300">
+                          {attribute.value}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </table>
+              </>
+            )}
+          </>
         )}
-
-        <div className="flex-4 flex justify-start items-center">
+        <div className="flex-4 flex items-center justify-start">
           <img
             src={optimizedImageUrl}
             // style={{ width: "100%", height: "auto" }}
             className="m-auto"
           />
         </div>
-
         {/* <div className="flex-4 flex justify-start items-center">
           <img
             src={product?.productImages?.productThumbnail?.url}

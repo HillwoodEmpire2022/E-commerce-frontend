@@ -30,6 +30,7 @@ import ProductClassAccordion from "../pageProps/shopPage/Accordions/ProductClass
 import ProductCategoryAccordion from "../pageProps/shopPage/Accordions/productCategory";
 import ProductSubCategoryAccordion from "../pageProps/shopPage/Accordions/ProductSubCategory";
 import ProductBrandAccordion from "../pageProps/shopPage/Accordions/productBrand";
+import { TopCategory } from "../category-images-cards/TopCategory";
 
 // let cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -106,7 +107,7 @@ const Header = (props) => {
     "inline-block lg:hover:text-[#1D6F2B] lg:hover:bg-[#E5E5E5] lg:hover:rounded-full py-2.5 px-2";
   return (
     <div className="h-100px sticky top-0 z-50 w-full border-b-[1px] border-b-gray-200 bg-white">
-      <div className="flex justify-end border-b-[1px] border-b-gray-200 bg-[white] px-4 py-1 text-black md:hidden">
+      <div className="relative flex justify-end border-b-[1px] border-b-gray-200 bg-[white] px-4 py-1 text-black md:hidden">
         <ul className="z-50 flex items-center gap-1 p-0 md:max-w-[320px] lg:max-w-[400px]">
           <div className="">
             {" "}
@@ -192,7 +193,7 @@ const Header = (props) => {
       </div>
 
       <nav className="relative mx-auto flex h-full max-w-container items-center gap-6 px-4 md:items-center md:justify-between">
-        <div className="ml-0 flex w-[90%] space-x-5 md:!w-[250px]">
+        <div className="ml-0 flex w-[90%] items-center space-x-5 md:!w-[250px]">
           <div className="hidden md:inline-block">
             {" "}
             <Link to="/">
@@ -212,10 +213,10 @@ const Header = (props) => {
           {/* <div className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-10">
             <FaSearch onClick={() => setSearch(true)} className="w-5 h-5" />
           </div> */}
-          <HiMenuAlt2
-            onClick={() => setSidenav(!sidenav)}
-            className="absolute right-4 top-6 inline-block h-6 w-8 cursor-pointer md:hidden"
-          />
+            <HiMenuAlt2
+              onClick={() => setSidenav(!sidenav)}
+              className="absolute right-4 top-4 inline-block h-6 w-8 cursor-pointer md:hidden"
+            />
           {sidenav && (
             <div
               className="fixed right-0 top-0 h-screen w-full overflow-auto bg-black bg-opacity-80 text-gray-200"
@@ -340,6 +341,7 @@ const Header = (props) => {
             </div>
           )}
         </div>
+        <TopCategory />
 
         <SearchBar />
 
@@ -364,8 +366,8 @@ const Header = (props) => {
             {user ? (
               ""
             ) : (
-              <>
-                <li>
+              <ul className="flex items-center">
+                <li className="rounded border border-gray-300 px-4 xl:border-none">
                   <NavLink
                     className={({ isActive }) => {
                       return isActive
@@ -374,11 +376,11 @@ const Header = (props) => {
                     }}
                     to="/signin"
                   >
-                    Sign in
+                    Login
                   </NavLink>
                 </li>
 
-                <li>
+                <li className="hidden xl:flex">
                   <NavLink
                     className={({ isActive }) => {
                       return isActive
@@ -387,10 +389,10 @@ const Header = (props) => {
                     }}
                     to="/signup"
                   >
-                    Sign Up
+                    Register
                   </NavLink>
                 </li>
-              </>
+              </ul>
             )}
             {user ? <></> : ""}
             <li className="relative ml-2 lg:ml-6">

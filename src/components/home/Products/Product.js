@@ -182,142 +182,138 @@ const ProductPreview = ({ productInfo }) => {
   );
   let headerIconStyles = "hover:text-[#1D6F2B] !rounded-full ";
 
-
-
-
   const productThumbnail =
-  productInfo.productImages.productThumbnail.url.replace(
-    productInfo.productImages.productThumbnail.url.split("/")[6],
-    "w_300,h_300"
-  );
-return (
-  <div
-    className="w-full border rounded-xl overflow-hidden hover:shadow-lg  relative "
-    onClick={handleProductDetails}
-  >
-    {isCreatedinthreedays && (
-      <img
-        src={newimage}
-        alt=""
-        className="w-15 h-12 absolute -top-1.5 -left-1.5 z-40  rounded-tl-lg "
-      />
-    )}
-    <div className="w-full  overflow-hidden aspect-square mb-1 ">
+    productInfo.productImages.productThumbnail.url.replace(
+      productInfo.productImages.productThumbnail.url.split("/")[6],
+      "w_300,h_300",
+    );
+  return (
+    <div
+      className="relative w-full overflow-hidden rounded border hover:shadow-lg"
+      onClick={handleProductDetails}
+    >
+      {isCreatedinthreedays && (
+        <img
+          src={newimage}
+          alt=""
+          className="w-15 absolute -left-1.5 -top-1.5 z-40 h-12 rounded-tl-lg"
+        />
+      )}
+      <div className="mb-1 aspect-square w-full overflow-hidden">
+        {productInwhishlist ? (
+          <IoMdHeart
+            className="absolute right-2 top-2 cursor-pointer rounded-full bg-[#dff9e3] px-1.5 py-1.5 text-[#1D6F2B] hover:bg-[#E5E5E5]"
+            size={30}
+            onClick={(event) => handleAddwishlist(event)}
+          />
+        ) : (
+          <IoIosHeartEmpty
+            className="absolute right-2 top-2 cursor-pointer rounded-full bg-white px-1.5 py-1.5 hover:bg-[#E5E5E5] hover:text-[#1D6F2B]"
+            size={30}
+            onClick={(event) => handleAddwishlist(event)}
+          />
+        )}
 
-    {productInwhishlist ? (
-              <IoMdHeart
-                className="absolute right-2 top-2 cursor-pointer rounded-full bg-[#dff9e3] px-1.5 py-1.5 text-[#1D6F2B] hover:bg-[#E5E5E5]"
-                size={30}
-                onClick={(event) => handleAddwishlist(event)}
-              />
-            ) : (
-              <IoIosHeartEmpty
-                className="absolute right-2 top-2 cursor-pointer rounded-full bg-white px-1.5 py-1.5 hover:bg-[#E5E5E5] hover:text-[#1D6F2B]"
-                size={30}
-                onClick={(event) => handleAddwishlist(event)}
-              />
-            )}
-     
-      {/* {isImageLoading && <ImageSkeleton />}{" "} */}
-      <img
-        src={productThumbnail && productThumbnail}
-        alt=""
-        onLoad={handleImageLoad}
-        className="object-cover h-full w-full"
-      />
-    </div>
-    <div className="flex justify-between  items-center px-2 pb-2">
-      <div>
-      <h2 className="overflow-hidden text-ellipsis text-sm font-[500] capitalize text-primeColor">
-                  {productInfo.name.length > 15
-                    ? productInfo.name.substring(0, 15) + "..."
-                    : productInfo.name}{" "}
-                </h2>
-        {/* <p className="text-gray-500">{productInfo?.price} RWF</p> */}
+        {/* {isImageLoading && <ImageSkeleton />}{" "} */}
+        <img
+          src={productThumbnail && productThumbnail}
+          alt=""
+          onLoad={handleImageLoad}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="flex items-center justify-between px-2 pb-2">
+        <div>
+          <h2 className="overflow-hidden text-ellipsis text-sm font-[500] capitalize text-primeColor">
+            {productInfo.name.length > 15
+              ? productInfo.name.substring(0, 15) + "..."
+              : productInfo.name}{" "}
+          </h2>
+          {/* <p className="text-gray-500">{productInfo?.price} RWF</p> */}
 
-        <div className="text-sm   flex justify-between ">
-          <div>
-            {productInfo.discountPercentage <= 0 && (
-              <div className="text-[#1D6F2B] font-medium">
-                <DisplayCurrency product={productInfo} isDiscount={true} />
-              </div>
-            )}
-            {productInfo.discountPercentage > 0 && (
-              <>
-                <div className=" text-[#1D6F2B] font-medium  ">
+          <div className="flex justify-between text-sm">
+            <div>
+              {productInfo.discountPercentage <= 0 && (
+                <div className="font-medium text-[#1D6F2B]">
                   <DisplayCurrency product={productInfo} isDiscount={true} />
                 </div>
-
-                <div className=" text-[#00000080] font-medium line-through">
-                  <DisplayCurrency product={productInfo} isDiscount={false} />
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
-        {
-          productInCart && <div
-          className=" my-2 flex w-fit gap-2 px-2 sml:hidden items-center rounded-full border bg-white p-1"
-          onClick={(event) => {
-            event.stopPropagation();
-          }}
-        >
-          <BiMinus
-            className="font-semibold text-[red] hover:rounded-full"
-            size={18}
-            onClick={(event) => handleRemoveCart(event)}
-          />
-          <p className="mx-0 flex h-4 w-4 items-center justify-center rounded-full border-[0.5px] border-[#fff] text-sm font-semibold text-black">
-            {productInCart && productInCart.items}
-          </p>
-          <BiPlus
-            size={18}
-            className="ml-0 font-semibold text-primary hover:rounded-full"
-            onClick={(event) => {
-              handleAddCart(event);
-            }}
-          />
-        </div>
-        }
-      </div>
-
-      {!productInCart || productInCart.items === 0 ? (
-                <div
-                  className="absolute right-1 bottom-2 flex items-center gap-1"
-                  onClick={(event) => handleAddCart(event)}
-                >
-                  <IoCartOutline
-                    className={headerIconStyles}
-                    onClick={(event) => handleAddCart(event)}
-                    size={20}
-                  />
-                </div>
-              ) : (
-                <div
-                  className=" hidden absolute  right-1 bottom-2 sml:flex items-center rounded-full border bg-white p-1"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                  }}
-                >
-                  <BiMinus
-                    className="font-semibold text-[red] hover:rounded-full"
-                    size={18}
-                    onClick={(event) => handleRemoveCart(event)}
-                  />
-                  <p className="mx-0 flex h-4 w-4 items-center justify-center rounded-full border-[0.5px] border-[#fff] text-sm font-semibold text-black">
-                    {productInCart && productInCart.items}
-                  </p>
-                  <BiPlus
-                    size={18}
-                    className="ml-0 font-semibold text-primary hover:rounded-full"
-                    onClick={(event) => {
-                      handleAddCart(event);
-                    }}
-                  />
-                </div>
               )}
-      {/* {!productInCart || productInCart.items == 0 ? (
+              {productInfo.discountPercentage > 0 && (
+                <>
+                  <div className="font-medium text-[#1D6F2B]">
+                    <DisplayCurrency product={productInfo} isDiscount={true} />
+                  </div>
+
+                  <div className="font-medium text-[#00000080] line-through">
+                    <DisplayCurrency product={productInfo} isDiscount={false} />
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {productInCart && (
+            <div
+              className="my-2 flex w-fit items-center gap-2 rounded-full border bg-white p-1 px-2 sml:hidden"
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+            >
+              <BiMinus
+                className="font-semibold text-[red] hover:rounded-full"
+                size={18}
+                onClick={(event) => handleRemoveCart(event)}
+              />
+              <p className="mx-0 flex h-4 w-4 items-center justify-center rounded-full border-[0.5px] border-[#fff] text-sm font-semibold text-black">
+                {productInCart && productInCart.items}
+              </p>
+              <BiPlus
+                size={18}
+                className="ml-0 font-semibold text-primary hover:rounded-full"
+                onClick={(event) => {
+                  handleAddCart(event);
+                }}
+              />
+            </div>
+          )}
+        </div>
+
+        {!productInCart || productInCart.items === 0 ? (
+          <div
+            className="absolute bottom-2 right-2 flex items-center gap-1"
+            onClick={(event) => handleAddCart(event)}
+          >
+            <IoCartOutline
+              className={headerIconStyles}
+              onClick={(event) => handleAddCart(event)}
+              size={20}
+            />
+          </div>
+        ) : (
+          <div
+            className="absolute bottom-2 right-1 hidden items-center rounded-full border bg-white p-1 sml:flex"
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <BiMinus
+              className="font-semibold text-[red] hover:rounded-full"
+              size={18}
+              onClick={(event) => handleRemoveCart(event)}
+            />
+            <p className="mx-0 flex h-4 w-4 items-center justify-center rounded-full border-[0.5px] border-[#fff] text-sm font-semibold text-black">
+              {productInCart && productInCart.items}
+            </p>
+            <BiPlus
+              size={18}
+              className="ml-0 font-semibold text-primary hover:rounded-full"
+              onClick={(event) => {
+                handleAddCart(event);
+              }}
+            />
+          </div>
+        )}
+        {/* {!productInCart || productInCart.items == 0 ? (
         <div
           className=" flex items-center"
           onClick={(event) => handleAddCart(event)}
@@ -336,31 +332,25 @@ return (
           }}
         >
           <BiMinus
-            className="text-[red] font-bold    hover:bg-[#E5E5E5] hover:rounded-full"
+            className="text-[red] font-semibold    hover:bg-[#E5E5E5] hover:rounded-full"
             size={20}
             onClick={(event) => handleRemoveCart(event)}
           />
-          <p className=" mx-0 bg-[#1D6F2B] text-white text-[12px] w-6 h-6 rounded-full  flex justify-center items-center  font-bold  border-[0.5px] border-[#fff]">
+          <p className=" mx-0 bg-[#1D6F2B] text-white text-[12px] w-6 h-6 rounded-full  flex justify-center items-center  font-semibold  border-[0.5px] border-[#fff]">
             {productInCart && productInCart.items}
           </p>
           <BiPlus
             size={20}
-            className="text-primary font-bold  hover:bg-[#E5E5E5] ml-0 hover:rounded-full"
+            className="text-primary font-semibold  hover:bg-[#E5E5E5] ml-0 hover:rounded-full"
             onClick={(event) => {
               handleAddCart(event);
             }}
           />
         </div>
       )} */}
-    
+      </div>
     </div>
-  </div>
-);
-
-
-
-
-
+  );
 
   return (
     <div

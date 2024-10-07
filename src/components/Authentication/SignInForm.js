@@ -30,7 +30,7 @@ export const AlertComp = (props) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (result?.data?.status === "success") {
@@ -48,7 +48,7 @@ export const AlertComp = (props) => {
     }
   };
   return (
-    <Alert color={props.color} className=" text-center flex  ">
+    <Alert color={props.color} className="flex text-center">
       <p className="capitalize-first">{props.message}</p>
       <button
         onClick={() => {
@@ -57,7 +57,7 @@ export const AlertComp = (props) => {
 
           // setIsAccountActivated(true);
         }}
-        className="bg-[#1D6F2B] m-auto mt-2 hover:bg-[#437a4c] px-5 text-gray-200 hover:text-white cursor-pointer w-fit text-base font-medium h-8 rounded duration-300"
+        className="m-auto mt-2 h-8 w-fit cursor-pointer rounded bg-[#1D6F2B] px-5 text-base font-medium text-gray-200 duration-300 hover:bg-[#437a4c] hover:text-white"
       >
         {" "}
         Request Email{" "}
@@ -170,7 +170,7 @@ const SignInForm = (props) => {
         console.log(
           "Email not verified!",
           err.response.data.message ===
-            "Your email has not been verified yet. Please check your inbox for the verification link or click here to resend the verification email."
+            "Your email has not been verified yet. Please check your inbox for the verification link or click here to resend the verification email.",
         );
 
         if (
@@ -189,7 +189,7 @@ const SignInForm = (props) => {
     }
   };
   return (
-    <div className=" w-full  text-center ">
+    <div className="w-full text-center">
       {showEnable2fa && (
         <Enable2FaModal
           showEnable2fa={showEnable2fa}
@@ -235,12 +235,12 @@ const SignInForm = (props) => {
       {isaccountActivated && (
         <form
           // className="w-full md:w-[60%] lgl:w-[400px] h-auto flex flex-col gap-4 items-center"
-          className="w-full m-auto md:w-[60%] lgl:w-[450px] h-auto flex flex-col items-center"
+          className="m-auto flex h-auto w-full flex-col items-center md:w-[60%] lgl:w-[450px]"
           onKeyDown={(e) => {
             if (e.key === "Enter") return handleSignIn();
           }}
         >
-          <div className="px-6 w-full h-[90%] flex flex-col justify-center overflow-y-scroll scrollbar-thin">
+          <div className="flex h-[90%] w-full flex-col justify-center overflow-y-scroll px-6 scrollbar-thin">
             {signInError && emailMessage == null && (
               <AlertComponent
                 color="failure"
@@ -257,32 +257,31 @@ const SignInForm = (props) => {
               />
             )}
 
-            <h1 className="font-titleFont decoration-[1px] font-semibold text-lg mdl:text-4xl mb-4 text-center">
+            <h1 className="font-titleFont mb-4 text-center text-lg font-semibold decoration-[1px] mdl:text-4xl">
               Sign in
             </h1>
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-.5">
+              <div className="gap-.5 flex flex-col">
                 <p className="font-titleFont text-base font-semibold text-gray-600">
                   Email
                 </p>
                 <input
                   onChange={handleEmail}
                   value={email}
-                  className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium 
-                    placeholder:font-normal placeholder:text-[#C4C4C4] rounded border-[1px] border-gray-400 outline-none"
+                  className="h-8 w-full rounded border-[1px] border-gray-400 px-4 text-base font-medium outline-none placeholder:text-sm placeholder:font-normal placeholder:tracking-wide placeholder:text-[#C4C4C4]"
                   type="email"
                   placeholder="john@example.com"
                 />
                 {errEmail && (
-                  <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                    <span className="font-bold italic mr-1">!</span>
+                  <p className="font-titleFont px-4 text-sm font-semibold text-red-500">
+                    <span className="mr-1 font-semibold italic">!</span>
                     {errEmail}
                   </p>
                 )}
               </div>
 
               {/* Password */}
-              <div className="flex flex-col gap-.5 mb-2">
+              <div className="gap-.5 mb-2 flex flex-col">
                 <p className="font-titleFont text-base font-semibold text-gray-600">
                   Password
                 </p>
@@ -290,13 +289,12 @@ const SignInForm = (props) => {
                   <input
                     onChange={handlePassword}
                     value={password}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium 
-                placeholder:font-normal placeholder:text-[#C4C4C4] rounded border-[1px] border-gray-400 outline-none"
+                    className="h-8 w-full rounded border-[1px] border-gray-400 px-4 text-base font-medium outline-none placeholder:text-sm placeholder:font-normal placeholder:tracking-wide placeholder:text-[#C4C4C4]"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
                   />
                   <div
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                    className="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? (
@@ -307,16 +305,16 @@ const SignInForm = (props) => {
                   </div>
                 </div>
                 {errPassword && (
-                  <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                    <span className="font-bold italic mr-1">!</span>
+                  <p className="font-titleFont px-4 text-sm font-semibold text-red-500">
+                    <span className="mr-1 font-semibold italic">!</span>
                     {errPassword}
                   </p>
                 )}
 
-                <p className="text-xs pt-1">
+                <p className="pt-1 text-xs">
                   Forgot password?{" "}
                   <Link
-                    className="text-[#1E61CC] duration-300 cursor-pointer hover:underline"
+                    className="cursor-pointer text-[#1E61CC] duration-300 hover:underline"
                     to="/forgot-password"
                   >
                     Forgot Password
@@ -328,23 +326,23 @@ const SignInForm = (props) => {
                 onClick={handleSignIn}
                 className={
                   loading
-                    ? "bg-[#81b48a] text-gray-200 hover:text-white w-full text-base font-medium h-8 rounded duration-300 disabled"
-                    : "bg-[#1D6F2B] hover:bg-[#437a4c] text-gray-200 hover:text-white cursor-pointer w-full text-base font-medium h-8 rounded duration-300"
+                    ? "disabled h-8 w-full rounded bg-[#81b48a] text-base font-medium text-gray-200 duration-300 hover:text-white"
+                    : "h-8 w-full cursor-pointer rounded bg-[#1D6F2B] text-base font-medium text-gray-200 duration-300 hover:bg-[#437a4c] hover:text-white"
                 }
               >
                 {loading ? (
                   <>
-                    <Spinner className="inline-block mr-3" />
+                    <Spinner className="mr-3 inline-block" />
                     Signing you In
                   </>
                 ) : (
                   "Sign In"
                 )}
               </button>
-              <p className="text-xs font-titleFont font-medium -mt-2">
+              <p className="font-titleFont -mt-2 text-xs font-medium">
                 Don't have an Account?{" "}
                 <Link
-                  className="text-[#1E61CC] duration-300 cursor-pointer hover:underline"
+                  className="cursor-pointer text-[#1E61CC] duration-300 hover:underline"
                   to="/signup"
                 >
                   Sign up

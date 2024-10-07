@@ -83,7 +83,7 @@ const SearchBar = ({ ismobileview }) => {
   return (
     <div
       className={` ${
-        ismobileview ? " " : "hidden md:block w-[50%]  rounded-md"
+        ismobileview ? " " : "hidden md:block w-full rounded-md"
       }`}
     >
       <div className="relative w-full lg:w-[90%] h-[40px] md:h-[40px] m-auto text-sm text-primeColor  flex items-center gap-2 justify-between p-0 rounded-md">

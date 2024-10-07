@@ -52,7 +52,7 @@ const TwoFactor = () => {
     try {
       const result = await axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER_URL}/api/v1/auth/verify-otp`,
-        { otp: otpCode }
+        { otp: otpCode },
       );
       setLoading(false);
       Cookies.set("token", result.data.token);
@@ -77,12 +77,12 @@ const TwoFactor = () => {
 
   return (
     <div className="otp-container flex flex-col items-center">
-      <h1 className="text-lg font-semibold mb-2">Enter code</h1>
-      <p className="text-sm text-gray-600 mb-4">We sent a code to your email</p>
+      <h1 className="mb-2 text-lg font-semibold">Enter code</h1>
+      <p className="mb-4 text-sm text-gray-600">We sent a code to your email</p>
 
       {/* OTP Inputs */}
-      <div className="otp-inputs flex gap-1 md:gap-2 mb-4 justify-center items-center">
-        <img src={twofaicon} className=" w-14 h-14  md:w-20 md:h-20" />
+      <div className="otp-inputs mb-4 flex items-center justify-center gap-1 md:gap-2">
+        <img src={twofaicon} className="h-14 w-14 md:h-20 md:w-20" />
         {otp.map((value, index) => (
           <input
             key={index}
@@ -91,16 +91,16 @@ const TwoFactor = () => {
             maxLength={1}
             value={value}
             onChange={(e) => handleOtpChange(e.target, index)}
-            className=" w-10 md:w-16 md:h-16 bg-[#669e68] bg-opacity-50 text-white font-bold text-center text-2xl border border-gray-300 rounded focus:border-green-500 focus:outline-none"
+            className="w-10 rounded border border-gray-300 bg-[#669e68] bg-opacity-50 text-center text-2xl font-semibold text-white focus:border-green-500 focus:outline-none md:h-16 md:w-16"
           />
         ))}
 
-        <img src={twofaicon} className="w-14 h-14  md:w-20 md:h-20" />
+        <img src={twofaicon} className="h-14 w-14 md:h-20 md:w-20" />
       </div>
 
       <SignInFormModal isNouser={isNouser} setIsNouser={setIsNouser} />
 
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+      {error && <p className="mb-4 text-red-500">{error}</p>}
 
       {/* Verify OTP Button */}
       <button
@@ -108,12 +108,12 @@ const TwoFactor = () => {
         onClick={handleOtpVerification}
         disabled={loading}
         className={`${
-          loading ? "bg-green-300" : "bg-primary hover:bg-green-700 "
-        } text-white w-full md:w-1/2 text-base font-medium py-2 rounded-full duration-300`}
+          loading ? "bg-green-300" : "bg-primary hover:bg-green-700"
+        } w-full rounded-full py-2 text-base font-medium text-white duration-300 md:w-1/2`}
       >
         {loading ? (
           <>
-            <Spinner className="inline-block mr-3" />
+            <Spinner className="mr-3 inline-block" />
             Verifying...
           </>
         ) : (
@@ -122,7 +122,7 @@ const TwoFactor = () => {
       </button>
 
       {/* Resend Link */}
-      <p className="text-sm mt-4">
+      <p className="mt-4 text-sm">
         Didn't get a code?{" "}
         <Link className="text-green-500" to="/signin">
           Click to resend

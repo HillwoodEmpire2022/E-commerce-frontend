@@ -14,7 +14,7 @@ const isInCurrentWeek = (date) => {
   const currentWeekStart = new Date();
   currentWeekStart.setHours(0, 0, 0, 0);
   currentWeekStart.setDate(
-    currentWeekStart.getDate() - currentWeekStart.getDay()
+    currentWeekStart.getDate() - currentWeekStart.getDay(),
   );
   return date >= currentWeekStart;
 };
@@ -31,14 +31,14 @@ export const DashboardTopCard = ({ className }) => {
     (order) =>
       new Date(order.createdAt).getDate() == today.getDate() &&
       new Date(order.createdAt).getMonth() == today.getMonth() &&
-      today.getFullYear() == new Date(order.createdAt).getFullYear()
+      today.getFullYear() == new Date(order.createdAt).getFullYear(),
   ).length;
   const totalDailyEarning = orders
     .filter(
       (order) =>
         new Date(order.createdAt).getDate() == today.getDate() &&
         new Date(order.createdAt).getMonth() == today.getMonth() &&
-        today.getFullYear() == new Date(order.createdAt).getFullYear()
+        today.getFullYear() == new Date(order.createdAt).getFullYear(),
     )
     .reduce((acc, order) => acc + order.amount, 0);
 
@@ -47,7 +47,7 @@ export const DashboardTopCard = ({ className }) => {
   // ).length;
 
   const totalWeeklyOrders = orders.filter((order) =>
-    isInCurrentWeek(new Date(order.createdAt))
+    isInCurrentWeek(new Date(order.createdAt)),
   ).length;
   // const totalWeeklyEarning = orders
   //   .filter((order) => new Date(order.createdAt) > thisweek)
@@ -59,22 +59,22 @@ export const DashboardTopCard = ({ className }) => {
   const totalMonthlyOrders = orders.filter(
     (order) =>
       new Date(order.createdAt).getMonth() == today.getMonth() &&
-      today.getFullYear() == new Date(order.createdAt).getFullYear()
+      today.getFullYear() == new Date(order.createdAt).getFullYear(),
   ).length;
   const totalMonthlyEarning = orders
     .filter(
       (order) =>
         new Date(order.createdAt).getMonth() == today.getMonth() &&
-        today.getFullYear() == new Date(order.createdAt).getFullYear()
+        today.getFullYear() == new Date(order.createdAt).getFullYear(),
     )
     .reduce((acc, order) => acc + order.amount, 0);
 
   const totalYearlyOrders = orders.filter(
-    (order) => new Date(order.createdAt).getFullYear() == today.getFullYear()
+    (order) => new Date(order.createdAt).getFullYear() == today.getFullYear(),
   ).length;
   const totalYearlyEarning = orders
     .filter(
-      (order) => new Date(order.createdAt).getFullYear() == today.getFullYear()
+      (order) => new Date(order.createdAt).getFullYear() == today.getFullYear(),
     )
     .reduce((acc, order) => acc + order.amount, 0);
 
@@ -125,15 +125,13 @@ export const DashboardTopCard = ({ className }) => {
     <Row gutter={[16, 16]} className="w-full">
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold  shadow-lg text-gray-700"
+          className="dashboard-top-card font-semibold text-gray-700 shadow-lg"
           style={{ background: dailyOrdersBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold ">
-              Daily Orders
-            </h3>
+            <h3 className="text-xl font-semibold text-[black]">Daily Orders</h3>
           </div>
-          <div className="dashboard-top-card__value ">
+          <div className="dashboard-top-card__value">
             Total: {totalDailyOrders}{" "}
             <span style={{ fontSize: "12px", color: "#f4a535" }}>Orders</span>
           </div>
@@ -148,11 +146,11 @@ export const DashboardTopCard = ({ className }) => {
       </Col>
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg text-gray-700"
+          className="dashboard-top-card font-semibold text-gray-700 shadow-lg"
           style={{ background: dailyEarningBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               Daily Earnings
             </h3>
           </div>
@@ -172,15 +170,15 @@ export const DashboardTopCard = ({ className }) => {
 
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg text-gray-700"
+          className="dashboard-top-card font-semibold text-gray-700 shadow-lg"
           style={{ background: weeklyOrdersBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               Weekly Orders
             </h3>
           </div>
-          <div className="dashboard-top-card__value ">
+          <div className="dashboard-top-card__value">
             Total: {totalWeeklyOrders}{" "}
             <span style={{ fontSize: "12px", color: "#f4a535" }}>Orders</span>
           </div>
@@ -196,16 +194,16 @@ export const DashboardTopCard = ({ className }) => {
 
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg text-gray-700"
+          className="dashboard-top-card font-semibold text-gray-700 shadow-lg"
           style={{ background: weeklyEarningBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               {" "}
               Weakly Earnings{" "}
             </h3>
           </div>
-          <div className="dashboard-top-card__value ">
+          <div className="dashboard-top-card__value">
             Amount: {totalWeeklyEarning}{" "}
             <span style={{ fontSize: "12px", color: "#f75d81" }}> Rwf</span>
           </div>
@@ -221,15 +219,15 @@ export const DashboardTopCard = ({ className }) => {
 
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg text-gray-700"
+          className="dashboard-top-card font-semibold text-gray-700 shadow-lg"
           style={{ background: monthlyOrdersBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               Monthly Orders
             </h3>
           </div>
-          <div className="dashboard-top-card__value ">
+          <div className="dashboard-top-card__value">
             Total: {totalMonthlyOrders}{" "}
             <span style={{ fontSize: "12px", color: "#f4a535" }}>Orders</span>
           </div>
@@ -244,15 +242,15 @@ export const DashboardTopCard = ({ className }) => {
       </Col>
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg text-gray-700"
+          className="dashboard-top-card font-semibold text-gray-700 shadow-lg"
           style={{ background: monthlyEarningBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               Monthly Earnings
             </h3>
           </div>
-          <div className="dashboard-top-card__value ">
+          <div className="dashboard-top-card__value">
             Amount: {totalMonthlyEarning}{" "}
             <span style={{ fontSize: "12px", color: "#f75d81" }}> Rwf</span>
           </div>
@@ -267,11 +265,11 @@ export const DashboardTopCard = ({ className }) => {
       </Col>
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg "
+          className="dashboard-top-card font-semibold shadow-lg"
           style={{ background: monthlyEarningBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               Yearly Orders
             </h3>
           </div>
@@ -284,11 +282,11 @@ export const DashboardTopCard = ({ className }) => {
       </Col>
       <Col xs={24} sm={12} md={6}>
         <Card
-          className="dashboard-top-card font-semibold shadow-lg bg-primary"
+          className="dashboard-top-card bg-primary font-semibold shadow-lg"
           style={{ background: monthlyEarningBgColor }}
         >
           <div className="dashboard-top-card__title">
-            <h3 className=" text-[black] text-xl  font-extrabold">
+            <h3 className="text-xl font-semibold text-[black]">
               Yearly Earnings
             </h3>
           </div>
@@ -314,21 +312,21 @@ export const OrdersLineCahrt = () => {
     (order) =>
       new Date(order.createdAt).getDate() == yesterday.getDate() &&
       new Date(order.createdAt).getMonth() == yesterday.getMonth() &&
-      yesterday.getFullYear() == new Date(order.createdAt).getFullYear()
+      yesterday.getFullYear() == new Date(order.createdAt).getFullYear(),
   )?.length;
 
   const totalDailyOrders = orders?.filter(
     (order) =>
       new Date(order.createdAt).getDate() == today.getDate() &&
       new Date(order.createdAt).getMonth() == today.getMonth() &&
-      today.getFullYear() == new Date(order.createdAt).getFullYear()
+      today.getFullYear() == new Date(order.createdAt).getFullYear(),
   ).length;
   const totalDailyEarning = orders
     .filter(
       (order) =>
         new Date(order.createdAt).getDate() == today.getDate() &&
         new Date(order.createdAt).getMonth() == today.getMonth() &&
-        today.getFullYear() == new Date(order.createdAt).getFullYear()
+        today.getFullYear() == new Date(order.createdAt).getFullYear(),
     )
     .reduce((acc, order) => acc + order.amount, 0);
 
@@ -337,7 +335,7 @@ export const OrdersLineCahrt = () => {
       (order) =>
         new Date(order.createdAt).getDate() == yesterday.getDate() &&
         new Date(order.createdAt).getMonth() == yesterday.getMonth() &&
-        yesterday.getFullYear() == new Date(order.createdAt).getFullYear()
+        yesterday.getFullYear() == new Date(order.createdAt).getFullYear(),
     )
     .reduce((acc, order) => acc + order.amount, 0);
 
@@ -471,17 +469,17 @@ export const OrdersLineCahrt = () => {
   }, [orders]);
 
   return (
-    <div className="   ">
+    <div className=" ">
       {/* <div className="bg-gradient-to-r  w-[100%]   from-primary  via-icon2 to-primeColor  shadow-lg rounded-md  "> */}
-      <div className="bg-gradient-to-r  w-[100%]  bg-[#e1e7f1]  shadow-lg rounded-md pt-5 ">
-        <Row gutter={[16, 16]} className="mt-0 mx-2">
+      <div className="w-[100%] rounded-md bg-[#e1e7f1] bg-gradient-to-r pt-5 shadow-lg">
+        <Row gutter={[16, 16]} className="mx-2 mt-0">
           <Col sm={24} md={8} className="">
-            <p className="text-icon1 flex items-center pl-3 font-semibold text-xl mb-1">
+            <p className="mb-1 flex items-center pl-3 text-xl font-semibold text-icon1">
               Orders Vs Hours
             </p>
           </Col>
           <Col sm={12} md={6}>
-            <p className="text-[#f75d81] font-semibold text-lg mb-1">
+            <p className="mb-1 text-lg font-semibold text-[#f75d81]">
               Orders / {today.getHours()} h:00
             </p>
             <Statistic
@@ -523,7 +521,7 @@ export const OrdersLineCahrt = () => {
             />
           </Col>
           <Col sm={12} md={8} className="">
-            <p className="text-[#f75d81] font-semibold text-lg mb-1">
+            <p className="mb-1 text-lg font-semibold text-[#f75d81]">
               Earnings / {today.getHours()} h:00{" "}
             </p>
             <Statistic
@@ -579,7 +577,7 @@ export const OrdersLineCahrt = () => {
           }}
         />
       </div>
-      <div className="sm:flex-col md:flex-row flex justify-between">
+      <div className="flex justify-between sm:flex-col md:flex-row">
         {user?.role == "admin" && <SellerPieChart />}
         <OrdersBarChart />
       </div>
@@ -616,7 +614,7 @@ export const OrdersBarChart = () => {
   const ordersNotZero = ordersPerDayOfWeek.filter((order) => order > 0);
   const minOrders = Math.min(...ordersNotZero);
   const colors = ordersPerDayOfWeek.map((order) =>
-    order === minOrders ? "#de5f5f" : "#1D6F2B"
+    order === minOrders ? "#de5f5f" : "#1D6F2B",
   );
 
   const [orderdata, setOrderdata] = useState({
@@ -668,7 +666,7 @@ export const OrdersBarChart = () => {
   }, [orders]);
 
   return (
-    <div className="shadow-lg border w-[100%] md:w-[58%]  mt-5 overflow-auto rounded-lg px-3 bg-[#e1e7f1]">
+    <div className="mt-5 w-[100%] overflow-auto rounded-lg border bg-[#e1e7f1] px-3 shadow-lg md:w-[58%]">
       <Chart
         options={orderdata.options}
         series={orderdata.series}
@@ -713,7 +711,7 @@ export const OrdersBarChart1 = () => {
   });
 
   return (
-    <div className="shadow-lg border w-[100%] md:w-[40%]  mt-5 overflow-auto rounded-lg px-3 bg-[#e1e7f1]">
+    <div className="mt-5 w-[100%] overflow-auto rounded-lg border bg-[#e1e7f1] px-3 shadow-lg md:w-[40%]">
       <Chart
         options={orderdata.options}
         series={orderdata.series}
@@ -741,7 +739,7 @@ export const SellerPieChart = () => {
   }, []);
 
   return (
-    <div className=" shadow-lg border w-[100%] md:w-[40%]  mt-5    overflow-auto rounded-lg px-3   bg-[#e1e7f1]">
+    <div className="mt-5 w-[100%] overflow-auto rounded-lg border bg-[#e1e7f1] px-3 shadow-lg md:w-[40%]">
       <Row gutter={[16, 16]} className="">
         {Object.keys(groupeduser).map((role) => (
           <Col sm={24} md={12} key={role}>
